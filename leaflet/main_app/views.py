@@ -110,3 +110,4 @@ def add_photo(request):
         except:
             print('An error ocurred uploading file to S3')
     return redirect('')
+    
