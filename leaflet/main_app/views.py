@@ -12,7 +12,7 @@ import boto3
 from .models import Event, Posting, Alert, Profile
 
 S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
-BUCKET='leadlet1'
+BUCKET='leaflet1'
 
 def home(request):
     return HttpResponse('home')
