@@ -1,0 +1,26 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+.buttons {
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Lobster', cursive;    
+    text-align: center;
+}
+
+.landing-img {
+    width: 100%;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+footer {
+    width: 100vw;
+}

@@ -1,1 +1,16 @@
-landing
+{% extends 'landing-base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col s12 m7">
+        <h1 class="title">leaflet</h1>
+        <img src="">
+    </div>
+    <div class="col s12 m7">
+        <a class="waves-effect waves-light btn-large" href="{% url 'login' %}">Log In</a></li>
+        <a class="waves-effect waves-light btn-large" href="{% url 'signup' %}">Sign Up</a></li>
+    </div>
+</div>
+
+
+{% endblock %}
