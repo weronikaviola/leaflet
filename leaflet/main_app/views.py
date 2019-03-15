@@ -5,70 +5,96 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import UserForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 import uuid
 import boto3
-from .models import Event, Posting, Alert
+from .models import Event, Posting, Alert, Profile
 
 S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
 BUCKET='leadlet1'
 
 def home(request):
-    return HttpResponse('home')
+    if (request.user.id == None):
+        return render(request, 'main_app/landing.html')
+    else: 
+        return redirect('main')
+
+@login_required
 def main(request):
     return render(request, 'main_app/index.html')
+
 ##### events #####
-class EventsList(ListView):
+class EventsList(LoginRequiredMixin, ListView):
     model = Event
-class EventDetail(DetailView):
+class EventDetail(LoginRequiredMixin, DetailView):
     model = Event
-class EventCreate(CreateView):
+class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
     fields = ['date', 'description', 'name', 'location']
     def form_valid(self, form):
         form.instance.admin = self.request.user
         return super().form_valid(form)
-class EventUpdate(UpdateView):
+class EventUpdate(LoginRequiredMixin, UpdateView):
     model = Event
     fields = ['date', 'description', 'name', 'location']
-class EventDelete(DeleteView):
+class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
     success_url = '/events/'
-#######postings#######
-class PostingList(ListView):
+
+######################postings###########################
+class PostingList(LoginRequiredMixin, ListView):
     model = Posting
-class PostingDetail(DetailView):
+class PostingDetail(LoginRequiredMixin, DetailView):
     model = Posting
-class PostingCreate(CreateView):
+class PostingCreate(LoginRequiredMixin, CreateView):
     model = Posting
     fields = ['title', 'description', 'date']
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-class PostingUpdate(UpdateView):
+class PostingUpdate(LoginRequiredMixin, UpdateView):
     model = Posting
     fields = ['title', 'description', 'date']
-class PostingDelete(DeleteView):
+class PostingDelete(LoginRequiredMixin, DeleteView):
     model = Posting
     success_url = '/postings/'
-#### alerts #####
-class AlertList(ListView):
+
+################### alerts #########################
+class AlertList(LoginRequiredMixin, ListView):
     model = Alert
-class AlertDetail(DetailView):
+class AlertDetail(LoginRequiredMixin, DetailView):
     model = Alert
-class AlertCreate(CreateView):
-    model = Alert
-    fields = '__all__'
-class AlertUpdate(UpdateView):
+class AlertCreate(LoginRequiredMixin, CreateView):
     model = Alert
     fields = '__all__'
-class AlertDelete(DeleteView):
+class AlertUpdate(LoginRequiredMixin, UpdateView):
+    model = Alert
+    fields = '__all__'
+class AlertDelete(LoginRequiredMixin, DeleteView):
     model = Alert
     success_url = '/alerts/'
-###### accounts ######3
-def account_settings(request):
-    return HttpResponse('settings WILL BE HERE ;)')
+###################### accounts ##################
+class ProfileCreate(LoginRequiredMixin, CreateView):
+    model = Profile
+    fields = ['nickname', 'profile_pic']
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
+    model = Profile
+    fields = ['nickname', 'profile_pic']
 
+@login_required
+def account_settings(request, user_id):
+    try:
+        profile = Profile.objects.get(user=user_id)
+        return ProfileUpdate.as_view()(request, pk=profile.id)
+    except ObjectDoesNotExist:
+        return ProfileCreate.as_view()(request, pk=profile.id)
 
 def signup(request):
     error_message = ''
@@ -77,14 +103,14 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('main')
         else:
             error_message = 'Invalid credentials - try again'
     form = UserForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
-
+@login_required
 def add_photo(request):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:

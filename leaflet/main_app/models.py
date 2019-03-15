@@ -37,10 +37,14 @@ class Alert(models.Model):
     date = models.DateField(default=timezone.now)
     def get_absolute_url(self):
         return reverse('alerts_details', kwargs={'pk': self.id})
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=100)
+    profile_pic = models.CharField(max_length=200, default = 'https://i.imgur.com/1WGonoD.png')
     def __str__(self):
         return f'profile: {self.user.name}'
+    def get_absolute_url(self):
+        return reverse('account_settings', kwargs={'pk': self.id})
 
 
