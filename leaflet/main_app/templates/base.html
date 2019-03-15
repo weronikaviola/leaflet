@@ -18,7 +18,7 @@
             <li><a href="{% url 'events_index' %}">Events</a></li>
             <li><a href="{% url 'postings_index' %}">Postings</a></li>
             <li><a href="{% url 'alerts_index' %}">Alerts</a></li>
-            <li><a href="{% url 'account_settings' %}">Account Settings</a></li>
+            <li><a href="{% url 'account_settings' request.user.id %}">Account Settings</a></li>
         </ul>
     </nav>
     {% block content %}

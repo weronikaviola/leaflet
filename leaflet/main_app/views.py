@@ -5,8 +5,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import UserForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Event, Posting, Alert
+from .models import Event, Posting, Alert, Profile
 
 def home(request):
     return HttpResponse('home')
@@ -29,7 +30,7 @@ class EventUpdate(UpdateView):
 class EventDelete(DeleteView):
     model = Event
     success_url = '/events/'
-#######postings#######
+######################postings###########################
 class PostingList(ListView):
     model = Posting
 class PostingDetail(DetailView):
@@ -46,7 +47,7 @@ class PostingUpdate(UpdateView):
 class PostingDelete(DeleteView):
     model = Posting
     success_url = '/postings/'
-#### alerts #####
+################### alerts #########################
 class AlertList(ListView):
     model = Alert
 class AlertDetail(DetailView):
@@ -60,11 +61,21 @@ class AlertUpdate(UpdateView):
 class AlertDelete(DeleteView):
     model = Alert
     success_url = '/alerts/'
-###### accounts ######3
-def account_settings(request):
-    return HttpResponse('settings WILL BE HERE ;)')
-
-
+###################### accounts ##################
+class ProfileCreate(CreateView):
+    model = Profile
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+class ProfileUpdate(UpdateView):
+    model = Profile
+    fields = ['nickname', 'profile_pic']
+def account_settings(request, user_id):
+    try:
+        profile = Profile.objects.get(user=user_id)
+        return ProfileUpdate.as_view(request)
+    except ObjectDoesNotExist:
+        return ProfileCreate.as_view()
 def signup(request):
     error_message = ''
     if request.method == 'POST':
