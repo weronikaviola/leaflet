@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content%}
+<h1>Title: {{ object.title}}</h1>
+<p>Date posted: {{ object.date }}</p>
+<p>description: {{ object.description}}</p>
+<p>author: {{ object.author.username}}</p>
+<div>
+    <a href="{% url 'postings_update' object.id %}">Edit</a>
+    <a href="{% url 'postings_delete' object.id %}">Delete</a>
+</div>
+{% endblock %}

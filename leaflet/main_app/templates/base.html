@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>leaflet</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'main' %}">Main</a></li>
+            <li><a href="{% url 'events_index' %}">Events</a></li>
+            <li><a href="{% url 'postings_index' %}">Postings</a></li>
+            <li><a href="{% url 'alerts_index' %}">Alerts</a></li>
+            <li><a href="{% url 'account_settings' %}">Account Settings</a></li>
+        </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

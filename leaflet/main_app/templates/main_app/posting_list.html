@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<!-- Add event link -->
+<a href="{% url 'postings_create' %}">Add new posting</a>
+{% for posting in posting_list %}
+<h2>{{posting.title}}</h2>
+<div>
+        <a href="{% url 'postings_update' posting.id %}">Edit</a>
+        <a href="{% url 'postings_delete' posting.id %}">Delete</a>
+    </div>
+{% endfor %}
+
+{% endblock %}
