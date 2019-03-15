@@ -44,5 +44,7 @@ class Profile(models.Model):
     profile_pic = models.CharField(max_length=200, default = 'https://i.imgur.com/1WGonoD.png')
     def __str__(self):
         return f'profile: {self.user.name}'
+    def get_absolute_url(self):
+        return reverse('account_settings', kwargs={'pk': self.id})
 
 
