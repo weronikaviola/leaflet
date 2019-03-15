@@ -4,6 +4,14 @@ from datetime import date
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+class Photo(models.Model):
+    # add ForKey
+    url = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"Photo url {self.url}"
+
+
 class Event(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=800)
@@ -34,7 +42,5 @@ class Profile(models.Model):
     nickname = models.CharField(max_length=100)
     def __str__(self):
         return f'profile: {self.user.name}'
-
-
 
 
