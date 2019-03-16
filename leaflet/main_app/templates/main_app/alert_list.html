@@ -3,7 +3,7 @@
 
 <!-- Add event link -->
 <a href="{% url 'alerts_create' %}">Add new alert</a>
-{% for alert in alert %}
+{% for alert in alert_list %}
 <h2>{{alert.title}}</h2>
 <div>
         <a href="{% url 'alerts_update' alert.id %}">Edit</a>

@@ -77,6 +77,7 @@ class AlertUpdate(LoginRequiredMixin, UpdateView):
 class AlertDelete(LoginRequiredMixin, DeleteView):
     model = Alert
     success_url = '/alerts/'
+    
 ###################### accounts ##################
 class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
