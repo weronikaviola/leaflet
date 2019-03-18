@@ -20,7 +20,8 @@ urlpatterns = [
     path('alerts/<int:pk>/', views.AlertDetail.as_view(), name='alerts_details'),
     path('alerts/<int:pk>/update/', views.AlertUpdate.as_view(), name='alerts_update'),
     path('alerts/<int:pk>/delete/', views.AlertDelete.as_view(), name='alerts_delete'),
-    path('settings/<int:user_id>/', views.account_settings, name='account_settings'),
+    path('settings/<int:pk>/', views.ProfileUpdate.as_view(), name='account_settings'),
+    path('profile/create/', views.ProfileCreate.as_view(), name='profile_create'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', views.signup, name='signup'),
 ]

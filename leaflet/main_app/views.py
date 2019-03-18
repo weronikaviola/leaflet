@@ -92,30 +92,25 @@ class AlertUpdate(LoginRequiredMixin, UpdateView):
 class AlertDelete(LoginRequiredMixin, DeleteView):
     model = Alert
     success_url = '/alerts/'
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 84d7f88796f77b17d7c5f14b0ea5905f6b39d400
 ###################### accounts ##################
 class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
-    fields = ['nickname', 'profile_pic']
+    fields = ['nickname', 'profile_pic', 'zip_code']
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Profile
-    fields = ['nickname', 'profile_pic']
+    fields = ['nickname', 'profile_pic', 'zip_code']
 
-@login_required
-def account_settings(request, user_id):
-    try:
-        profile = Profile.objects.get(user=user_id)
-        return ProfileUpdate.as_view()(request, pk=profile.id)
-    except ObjectDoesNotExist:
-        return ProfileCreate.as_view()(request, pk=profile.id)
+# @login_required
+# def account_settings(request, user_id):
+#     try:
+#         profile = Profile.objects.get(user=user_id)
+#         return ProfileUpdate.as_view()(request, pk=profile.id)
+#     except ObjectDoesNotExist:
+#         return ProfileCreate.as_view()(request, pk=profile.id)
 
 def signup(request):
     error_message = ''
@@ -124,7 +119,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('main')
+            return redirect('profile_create')
         else:
             error_message = 'Invalid credentials - try again'
     form = UserForm()
