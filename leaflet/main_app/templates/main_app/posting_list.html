@@ -2,10 +2,9 @@
 {% block content%}
 
 <!-- Add event link -->
-<a href="{% url 'postings_create' %}">Add new posting</a>
-{% for posting in posting_list %}
-
+<br>
 <div class="row">
+    {% for posting in posting_list %}
     <div class="col s12 m4">
         <div class="card small hoverable">
             <div class="card-image">
@@ -16,13 +15,15 @@
                 <p> {{ posting.description }}</p>
             </div>
             <div class="card-action">
+                <a href="{% url 'postings_details' posting.id %}">Info</a>
+                {% if user.id == posting.author.id %}
                 <a href="{% url 'postings_update' posting.id %}">Edit</a>
                 <a href="{% url 'postings_delete' posting.id %}">Delete</a>
+                {% endif %}
             </div>
         </div>  
     </div>  
-    {% endfor %}
-    
+    {% endfor %}  
 </div>  
 
 <div class="fixed-action-btn">
@@ -33,5 +34,5 @@
   $(document).ready(function(){
     $('.fixed-action-btn').floatingActionButton();
   });
-  </script>
+</script>
 {% endblock %}

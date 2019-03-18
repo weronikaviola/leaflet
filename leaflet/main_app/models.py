@@ -35,6 +35,7 @@ class Alert(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=800)
     date = models.DateField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     def get_absolute_url(self):
         return reverse('alerts_details', kwargs={'pk': self.id})
 

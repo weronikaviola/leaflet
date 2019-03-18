@@ -79,9 +79,9 @@ class AlertDetail(LoginRequiredMixin, DetailView):
 
 class AlertCreate(LoginRequiredMixin, CreateView):
     model = Alert
-    fields = '__all__'
+    fields = ['title', 'description', 'date']
     def form_valid(self, form):
-        form.instance.admin = self.request.user
+        form.instance.author = self.request.user
         return super().form_valid(form)
     success_url = '/alerts/'
 
@@ -92,11 +92,6 @@ class AlertUpdate(LoginRequiredMixin, UpdateView):
 class AlertDelete(LoginRequiredMixin, DeleteView):
     model = Alert
     success_url = '/alerts/'
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 84d7f88796f77b17d7c5f14b0ea5905f6b39d400
 ###################### accounts ##################
 class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
