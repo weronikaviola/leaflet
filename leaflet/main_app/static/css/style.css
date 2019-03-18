@@ -1,24 +1,27 @@
 body {
     height: 100vh;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-content: center;
-    align-items: center;
+    align-items: center; */
     width: 100vw;
-}
+    overflow: unset !important;
+}  
 
-header {
-    width: 100%;
-}
-
-.title {
-    font-family: 'Lobster', cursive;  
+.nav-wrapper {
+    width: 100vw;
     padding: 20px;
+}
+
+.brand-logo {
+    font-family: 'Lobster', cursive;  
+    padding-left: 100px;
 }
 
 footer {
     padding-top: 0;
     text-align: right;
-    width: 100%;
+    width: 90%;
+    margin: 0px 50px;
 }
