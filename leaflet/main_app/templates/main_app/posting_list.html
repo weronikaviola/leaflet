@@ -4,6 +4,7 @@
 <!-- Add event link -->
 <a href="{% url 'postings_create' %}">Add new posting</a>
 {% for posting in posting_list %}
+
 <div class="row">
     <div class="col s12 m4">
         <div class="card small hoverable">
@@ -21,6 +22,16 @@
         </div>  
     </div>  
     {% endfor %}
+    
 </div>  
 
+<div class="fixed-action-btn">
+    <a href="{% url 'postings_create' %}" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.fixed-action-btn').floatingActionButton();
+  });
+  </script>
 {% endblock %}

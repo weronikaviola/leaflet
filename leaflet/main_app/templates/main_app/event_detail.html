@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% block content%}
+<!-- <div class="row s12 m12 l12 left">
+    <a href="#!" class="breadcrumb clean">First</a>
+    <a href="#!" class="breadcrumb clean">Second</a>
+    <a href="#!" class="breadcrumb clean">Third</a>
+</div> -->
+
+<a href="{% url 'events_index' %}">Back</a>
 <div class="container">
-    <h1>Event: {{ object.name}}</h1>
+    <h3>Event: {{ object.name}}</h3>
     <p>Date: {{ object.date }}</p>
     <p>description: {{ object.description}}</p>
     <p>admin: {{ object.admin.username}}</p>
