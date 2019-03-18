@@ -32,15 +32,18 @@ class EventsList(LoginRequiredMixin, ListView):
     model = Event
 class EventDetail(LoginRequiredMixin, DetailView):
     model = Event
+
 class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
-    fields = ['date', 'description', 'name', 'location']
+    fields = ['name', 'date', 'description', 'location']
     def form_valid(self, form):
         form.instance.admin = self.request.user
         return super().form_valid(form)
+
 class EventUpdate(LoginRequiredMixin, UpdateView):
     model = Event
     fields = ['date', 'description', 'name', 'location']
+
 class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
     success_url = '/events/'
@@ -48,17 +51,21 @@ class EventDelete(LoginRequiredMixin, DeleteView):
 ######################postings###########################
 class PostingList(LoginRequiredMixin, ListView):
     model = Posting
+
 class PostingDetail(LoginRequiredMixin, DetailView):
     model = Posting
+
 class PostingCreate(LoginRequiredMixin, CreateView):
     model = Posting
     fields = ['title', 'description', 'date']
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
 class PostingUpdate(LoginRequiredMixin, UpdateView):
     model = Posting
     fields = ['title', 'description', 'date']
+
 class PostingDelete(LoginRequiredMixin, DeleteView):
     model = Posting
     success_url = '/postings/'
@@ -66,17 +73,26 @@ class PostingDelete(LoginRequiredMixin, DeleteView):
 ################### alerts #########################
 class AlertList(LoginRequiredMixin, ListView):
     model = Alert
+
 class AlertDetail(LoginRequiredMixin, DetailView):
     model = Alert
+
 class AlertCreate(LoginRequiredMixin, CreateView):
     model = Alert
     fields = '__all__'
+    def form_valid(self, form):
+        form.instance.admin = self.request.user
+        return super().form_valid(form)
+    success_url = '/alerts/'
+
 class AlertUpdate(LoginRequiredMixin, UpdateView):
     model = Alert
     fields = '__all__'
+
 class AlertDelete(LoginRequiredMixin, DeleteView):
     model = Alert
     success_url = '/alerts/'
+
 ###################### accounts ##################
 class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
@@ -84,6 +100,7 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Profile
     fields = ['nickname', 'profile_pic']
