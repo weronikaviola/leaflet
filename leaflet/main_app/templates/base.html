@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,24 +8,22 @@
     <title>leaflet</title>
     <!-- Materialize CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Materialize icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Added jQuery -->
-    <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>   
-    <!-- custom js -->
-    <script type="text/javascript" src = "{% static 'javascript/main.js' %}"></script>    
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </head>
 
 <body>
-    <header>
+    <div class="container header">
         <nav>
             <div class="cyan lighten-3 nav-wrapper">
-                <a href="#" class="title brand-logo">leaflet</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="#!" class="title brand-logo">leaflet</a>
+                <a href="#" data-activates="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <!-- login / out or sign up based on auth'd user -->
                 <ul id="nav-mobile" class="right">
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
@@ -34,6 +32,8 @@
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
                 {% endif %}
                 </ul>
+
+                <!-- nav that appears on medium sized screen or larger  -->
                 <ul class="right hide-on-med-and-down">
                     <li class="tab"><a href="{% url 'main' %}">Main</a></li>
                     <li class="tab"><a href="{% url 'events_index' %}">Events</a></li>
@@ -45,22 +45,29 @@
                 </ul>
             </div>
         </nav>
-
-        <!-- hidden side nav (not appearing) -->
+        <!-- hidden side nav -->
         <ul class="sidenav" id="mobile-demo">
             <li class="tab"><a href="{% url 'main' %}">Main</a></li>
             <li class="tab"><a href="{% url 'events_index' %}">Events</a></li>
             <li class="tab"><a href="{% url 'postings_index' %}">Postings</a></li>
             <li class="tab"><a href="{% url 'alerts_index' %}">Alerts</a></li>
+            {% if user.is_authenticated %}
+            <li class="tab"><a href="{% url 'account_settings' request.user.id %}">Profile Settings</a></li>
+            {% endif %}
         </ul>
-    </header>                
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <footer class="darken-3 page-footer">
-        <div class="darken-3 right">All Rights Reserved, &copy; 2019 MGR International &nbsp;</div>
+    </div>     
+
+
+    {% block content %}
+    {% endblock %}
+
+
+    <footer class="cyan darken-3 page-footer right">
+       All Rights Reserved, &copy; 2019 MGR International &nbsp;
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-</body>
+
+    <script>
+    $(".sidenav-trigger").sideNav();
+    </script>
+</body>   
 </html>

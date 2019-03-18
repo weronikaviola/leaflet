@@ -3,22 +3,35 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-content: center;
     align-items: center;
     width: 100vw;
-}
+}  
 
-header {
-    width: 100%;
+
+.header {
+    width: 100vw;
+    margin: 0;
 }
 
 .title {
     font-family: 'Lobster', cursive;  
-    padding: 20px;
+    padding: 100px;
 }
 
-footer {
+.page-footer {
     padding-top: 0;
     text-align: right;
     width: 100%;
+    margin: 0;
 }
+
+
+.clean {
+  background: none;
+  box-shadow: none;
+}    
+
+.breadcrumb {
+    color: rgba(0,0,0,1);
+}
+

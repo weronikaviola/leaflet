@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block content%}
-<h1>{{ object.title}}</h1>
-<p>posted: {{ object.date }}</p>
-<p>description: {{ object.description}}</p>
-<div>
-    <a href="{% url 'alerts_update' object.id %}">Edit</a>
-    <a href="{% url 'alerts_delete' object.id %}">Delete</a>
+<div class="container">
+    <h1>{{ object.title}}</h1>
+    <p>posted: {{ object.date }}</p>
+    <p>description: {{ object.description}}</p>
+    <div>
+        <a href="{% url 'alerts_update' object.id %}">Edit</a>
+        <a href="{% url 'alerts_delete' object.id %}">Delete</a>
+    </div>
 </div>
 {% endblock %}

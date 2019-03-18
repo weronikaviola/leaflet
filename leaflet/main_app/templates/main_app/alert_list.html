@@ -6,9 +6,9 @@
 {% for alert in alert_list %}
 <h2>{{alert.title}}</h2>
 <div>
-        <a href="{% url 'alerts_update' alert.id %}">Edit</a>
-        <a href="{% url 'alerts_delete' alert.id %}">Delete</a>
-    </div>
+    <a href="{% url 'alerts_update' alert.id %}">Edit</a>
+    <a href="{% url 'alerts_delete' alert.id %}">Delete</a>
+</div>
 {% endfor %}
 
 {% endblock %}
