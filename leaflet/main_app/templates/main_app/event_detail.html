@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 {% block content%}
-<h1>Event: {{ object.name}}</h1>
-<p>Date: {{ object.date }}</p>
-<p>description: {{ object.description}}</p>
-<p>admin: {{ object.admin.username}}</p>
-<p>location: {{ object.location }}</p>
-<div>
-    <a href="{% url 'events_update' object.id %}">Edit</a>
-    <a href="{% url 'events_delete' object.id %}">Delete</a>
+<!-- <div class="row s12 m12 l12 left">
+    <a href="#!" class="breadcrumb clean">First</a>
+    <a href="#!" class="breadcrumb clean">Second</a>
+    <a href="#!" class="breadcrumb clean">Third</a>
+</div> -->
+
+<a href="{% url 'events_index' %}">Back</a>
+<div class="container">
+    <h3>Event: {{ object.name}}</h3>
+    <p>Date: {{ object.date }}</p>
+    <p>description: {{ object.description}}</p>
+    <p>admin: {{ object.admin.username}}</p>
+    <p>location: {{ object.location }}</p>
+    <div>
+        <a href="{% url 'events_update' object.id %}">Edit</a>
+        <a href="{% url 'events_delete' object.id %}">Delete</a>
+    </div>
 </div>
 {% endblock %}

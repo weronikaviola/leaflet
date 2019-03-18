@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input class="btn waves-effect waves-light"type="submit" value="Submit">
-</form>
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input class="btn waves-effect waves-light"type="submit" value="Submit">
+    </form>
+</div>
 {% endblock %}
