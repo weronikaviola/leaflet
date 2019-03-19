@@ -9,5 +9,8 @@
         </table>
         <input class="btn waves-effect waves-light"type="submit" value="Submit">
     </form>
+    {% if user.profile %}
+    <a href="{% url 'add_photo' 'profile' user.profile.id %}">add photo</a>
+    {% endif %}
 </div>
 {% endblock %}

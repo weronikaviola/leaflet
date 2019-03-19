@@ -25,5 +25,5 @@ urlpatterns = [
     path('profile/create/', views.ProfileCreate.as_view(), name='profile_create'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', views.signup, name='signup'),
-    path('photo/<slug:kind>/<int:key>', views.add_photo, name='add_photo'),
+    path('photo/<slug:kind>/<int:obj_id>', views.add_photo, name='add_photo'),
 ]
