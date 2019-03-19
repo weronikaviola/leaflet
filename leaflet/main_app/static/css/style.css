@@ -7,7 +7,6 @@ body {
     width: 100vw;
 }  
 
-
 .header {
     width: 100vw;
     margin: 0;
@@ -23,15 +22,12 @@ body {
     text-align: right;
     width: 100%;
     margin: 0;
+} 
+
+.alert {
+    color: #e84d24;
 }
 
-
-.clean {
-  background: none;
-  box-shadow: none;
-}    
-
-.breadcrumb {
-    color: rgba(0,0,0,1);
+#post-detail-img {
+    width: 50%;
 }
-

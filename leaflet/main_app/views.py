@@ -81,9 +81,9 @@ class AlertDetail(LoginRequiredMixin, DetailView):
 
 class AlertCreate(LoginRequiredMixin, CreateView):
     model = Alert
-    fields = '__all__'
+    fields = ['title', 'description', 'date']
     def form_valid(self, form):
-        form.instance.admin = self.request.user
+        form.instance.author = self.request.user
         return super().form_valid(form)
     success_url = '/alerts/'
 

@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block content%}
-<div class="container"></div>
-    <h1>Title: {{ object.title}}</h1>
+<div class="container left-align">
+    <h3>{{ object.title}}</h3>
     <p>Date posted: {{ object.date }}</p>
-    <p>description: {{ object.description}}</p>
-    <p>author: {{ object.author.username}}</p>
+    <p>Posted by: {{ object.author.username}}</p>
+    <img id="post-detail-img" src="https://www.knoll.com/static_resources/images/products/catalog/eco/parts/642TR/642TR-KC_KC_FZ.jpg">
+    <p>{{ object.description}}</p>
     <div>
-        <a href="{% url 'postings_update' object.id %}">Edit</a>
-        <a href="{% url 'postings_delete' object.id %}">Delete</a>
+        <a class="btn waves-effect waves-light" href="{% url 'postings_update' object.id %}">Edit</a>
+        <a class="btn waves-effect waves-light red" href="{% url 'postings_delete' object.id %}">Delete</a>
     </div>
 </div>
 {% endblock %}

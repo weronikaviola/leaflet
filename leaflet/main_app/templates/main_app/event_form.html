@@ -2,9 +2,9 @@
 {% block content%}
 {% if object %}
 <div class="container">
-    <h1>Edit {{ object.name }}</h1>
+    <h3>Edit {{ object.name }}</h3>
     {% else %}
-    <h1>Add Event</h1>
+    <h3>Add Event</h3>
     {% endif %}
     <form action="" method="post">
         {% csrf_token %}

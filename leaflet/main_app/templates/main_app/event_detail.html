@@ -5,8 +5,9 @@
     <a href="#!" class="breadcrumb clean">Second</a>
     <a href="#!" class="breadcrumb clean">Third</a>
 </div> -->
-
-<a href="{% url 'events_index' %}">Back</a>
+<div class="container">
+    <a href="{% url 'events_index' %}">Back</a>
+</div>
 <div class="container">
     <h3>Event: {{ object.name}}</h3>
     <p>Date: {{ object.date }}</p>

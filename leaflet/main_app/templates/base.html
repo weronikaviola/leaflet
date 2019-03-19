@@ -21,7 +21,11 @@
     <div class="container header">
         <nav>
             <div class="cyan lighten-3 nav-wrapper">
-                <a href="#!" class="title brand-logo">leaflet</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'main' %}" class="title brand-logo">leaflet</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="title brand-logo">leaflet</a>
+                {% endif %}
                 <a href="#" data-activates="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <!-- login / out or sign up based on auth'd user -->
                 <ul id="nav-mobile" class="right">
@@ -46,15 +50,15 @@
             </div>
         </nav>
         <!-- hidden side nav -->
+        {% if user.is_authenticated %}
         <ul class="sidenav" id="mobile-demo">
             <li class="tab"><a href="{% url 'main' %}">Main</a></li>
             <li class="tab"><a href="{% url 'events_index' %}">Events</a></li>
             <li class="tab"><a href="{% url 'postings_index' %}">Postings</a></li>
             <li class="tab"><a href="{% url 'alerts_index' %}">Alerts</a></li>
-            {% if user.is_authenticated and user.profile %}
             <li class="tab"><a href="{% url 'account_settings' user.profile.id %}">Profile Settings</a></li>
-            {% endif %}
         </ul>
+        {% endif %}
     </div>     
 
 

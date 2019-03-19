@@ -4,9 +4,9 @@
 
 
 <div class="container">
-    <h1>Edit {{ object.title }}</h1>
+    <h3>Edit {{ object.title }}</h3>
     {% else %}
-    <h1>Add Alert</h1>
+    <h3>Add Alert</h3>
     {% endif %}
     <form action="" method="post">
         {% csrf_token %}
