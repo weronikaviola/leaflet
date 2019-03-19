@@ -19,7 +19,8 @@ import boto3
 from .models import Event, Posting, Alert, Profile, Photo
 
 S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
-BUCKET='leaflet2'
+# BUCKET='leaflet2'
+BUCKET = 'musicschool'
 # BUCKET='recordcollector'
 
 
@@ -159,16 +160,31 @@ def add_photo(request, kind, obj_id):
                 s3.upload_fileobj(photo_file, BUCKET, key)
                 url = f"{S3_BASE_URL}{BUCKET}/{key}"
                 if kind == 'postings':
+                    try: 
+                        p = Photo.objects.get(posting=obj_id)
+                        p.delete()
+                    except:
+                        print('didnt delete')
                     pst = Posting.objects.get(id=obj_id)
                     photo = Photo(url=url, posting=pst)
                 elif kind == 'events':
+                    try: 
+                        p = Photo.objects.get(event=obj_id)
+                        p.delete()
+                    except:
+                        print('didnt delete')
                     evt = Event.objects.get(id=obj_id)
                     photo = Photo(url=url, event=evt)
                 elif kind == 'profile':
+                    try: 
+                        p = Photo.objects.get(profile=obj_id)
+                        p.delete()
+                    except:
+                        print('didnt delete')
                     prf = Profile.objects.get(id=obj_id)
                     photo = Photo(url=url, profile=prf)
                 photo.save()
             except:
                 print('An error ocurred uploading file to S3')
                 ##weronika redirct to the kind
-        return redirect('main' if kind == 'profile' else f'/{kind}/')
+        return redirect(f'/settings/{obj_id}/' if kind == 'profile' else f'/{kind}/')
