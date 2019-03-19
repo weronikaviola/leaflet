@@ -14,10 +14,11 @@ from main_app import views
 
 import uuid
 import boto3
-from .models import Event, Posting, Alert, Profile
+from .models import Event, Posting, Alert, Profile, Photo
 
 S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
 BUCKET='recordcollector'
+
 
 def home(request):
     if (request.user.id == None):
@@ -45,7 +46,7 @@ class EventCreate(LoginRequiredMixin, CreateView):
 
 class EventUpdate(LoginRequiredMixin, UpdateView):
     model = Event
-    fields = ['date', 'description', 'name', 'location']
+    fields = [ 'name', 'date', 'description', 'location']
 
 class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
@@ -102,10 +103,12 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Profile
     fields = ['nickname', 'zip_code']
+    success_url = '/main'
 
 # @login_required
 # def account_settings(request, user_id):
@@ -130,11 +133,13 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 @login_required
-def add_photo(request, kind, key):
+def add_photo(request, kind, obj_id):
+    skip_url = f'/{kind}/' if (kind == 'events' or kind == 'postings') else '/main/' 
     if request.method =='GET':
         data = {
             'kind': kind,
-            'key': key
+            'obj_id': obj_id,
+            'skip_url': skip_url
         }
         return render(request, 'add_photo.html', data)
     else:
@@ -145,19 +150,18 @@ def add_photo(request, kind, key):
             
             try: 
                 s3.upload_fileobj(photo_file, BUCKET, key)
-                url = f"{S3_BASE_URL}{BUCKET}/{KEY}"
-                photo = Photo(url=url)
-                if kind=='event': 
-                    evt = Event.objects.get(id=key)
-                    photo.event = evt
-                elif kind == 'posting': 
-                    pst = Posting.objects.get(id=key)
-                    photo.posting = pst
-                elif kind == 'profile': 
-                    prf = Profile.objects.get(id=key)
-                    photo.profile = prf
+                url = f"{S3_BASE_URL}{BUCKET}/{key}"
+                if kind == 'postings':
+                    pst = Posting.objects.get(id=obj_id)
+                    photo = Photo(url=url, posting=pst)
+                elif kind == 'events':
+                    evt = Event.objects.get(id=obj_id)
+                    photo = Photo(url=url, event=evt)
+                elif kind == 'profile':
+                    prf = Profile.objects.get(id=obj_id)
+                    photo = Photo(url=url, profile=prf)
                 photo.save()
             except:
                 print('An error ocurred uploading file to S3')
                 ##weronika redirct to the kind
-        return redirect('main')
+        return redirect('main' if kind == 'profile' else f'/{kind}/')

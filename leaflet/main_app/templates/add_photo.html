@@ -2,11 +2,11 @@
 {% block content %}
 
 <h1>Add Photo</h1>
-<form action="{% url 'add_photo' kind key %}" enctype="multipart/form-data" method="POST">
+<form action="{% url 'add_photo' kind obj_id %}" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
 <input type="file" name="photo-file">
 <input type="submit">
-<a href="/main/">Skip</a>
+<a href="{{skip_url}}">Skip</a>
 </form>
 
 {% endblock %}
