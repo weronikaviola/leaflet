@@ -35,7 +35,6 @@ class Alert(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=100)
-    profile_pic = models.CharField(max_length=200, default = 'https://i.imgur.com/1WGonoD.png')
     zip_code = models.IntegerField(default=00000)
     def __str__(self):
         return f'profile: {self.user.first_name}'

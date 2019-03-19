@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, QueryDict
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -97,14 +97,14 @@ class AlertDelete(LoginRequiredMixin, DeleteView):
 ###################### accounts ##################
 class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
-    fields = ['nickname', 'profile_pic', 'zip_code']
+    fields = ['nickname', 'zip_code']
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Profile
-    fields = ['nickname', 'profile_pic', 'zip_code']
+    fields = ['nickname', 'zip_code']
 
 # @login_required
 # def account_settings(request, user_id):
