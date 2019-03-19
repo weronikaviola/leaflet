@@ -17,7 +17,7 @@ import boto3
 from .models import Event, Posting, Alert, Profile
 
 S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
-BUCKET='musicschool'
+BUCKET='recordcollector'
 
 def home(request):
     if (request.user.id == None):
@@ -32,6 +32,7 @@ def main(request):
 ##### events #####
 class EventsList(LoginRequiredMixin, ListView):
     model = Event
+
 class EventDetail(LoginRequiredMixin, DetailView):
     model = Event
 

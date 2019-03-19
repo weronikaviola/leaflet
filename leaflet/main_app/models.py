@@ -12,7 +12,7 @@ class Event(models.Model):
     admin = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=200)
     def __str__(self):
-        return f'{self.name} by {self.admin.name}'
+        return f'{self.name}'
     def get_absolute_url(self):
         return reverse('add_photo', kwargs={'kind': 'event', 'key': self.id})
 

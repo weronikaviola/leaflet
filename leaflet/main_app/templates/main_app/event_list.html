@@ -6,7 +6,11 @@
     <div class="col s12 m6 l4">
         <div class="card horizontal">
             <div class="card-image">
+            {% if event.photo %}
+            <img src="{{ event.photo.url }}">
+            {% else %}
             <img src="https://lorempixel.com/100/190/nature/6">
+            {% endif %}
             </div>
             <div class="card-stacked">
                 <div class="card-content">
