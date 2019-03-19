@@ -4,13 +4,6 @@ from datetime import date
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-class Photo(models.Model):
-    # add ForKey
-    url = models.CharField(max_length=200)
-
-    def __str__(self):
-        return f"Photo url {self.url}"
-
 
 class Event(models.Model):
     name = models.CharField(max_length=100)
@@ -21,7 +14,7 @@ class Event(models.Model):
     def __str__(self):
         return f'{self.name} by {self.admin.name}'
     def get_absolute_url(self):
-        return reverse('events_details', kwargs={'pk': self.id})
+        return reverse('add_photo', kwargs={'kind': 'event', 'key': self.id})
 
 class Posting(models.Model):
     title = models.CharField(max_length=100)
@@ -29,7 +22,7 @@ class Posting(models.Model):
     date = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     def get_absolute_url(self):
-        return reverse('postings_details', kwargs={'pk': self.id})
+        return reverse('add_photo', kwargs={'kind': 'posting', 'key': self.id})
 
 class Alert(models.Model):
     title = models.CharField(max_length=100)
@@ -46,6 +39,14 @@ class Profile(models.Model):
     def __str__(self):
         return f'profile: {self.user.first_name}'
     def get_absolute_url(self):
+        return reverse('add_photo', kwargs={'kind': 'profile', 'key': self.id})
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    event = models.ForeignKey(Event, blank=True, null=True, on_delete=models.CASCADE)
+    posting = models.ForeignKey(Posting, blank=True, null=True, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, blank=True, null=True, on_delete=models.CASCADE)
+    def __str__(self):
+        return f"Photo url {self.url}"
+    def get_absolute_url(self):
         return reverse('main')
-
-

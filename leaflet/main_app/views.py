@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, QueryDict
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import UserForm
@@ -9,13 +9,15 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from main_app import views
+
 
 import uuid
 import boto3
 from .models import Event, Posting, Alert, Profile
 
 S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
-BUCKET='leaflet1'
+BUCKET='musicschool'
 
 def home(request):
     if (request.user.id == None):
@@ -127,17 +129,34 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 @login_required
-def add_photo(request):
-    photo_file = request.FILES.get('photo-file', None)
-    if photo_file:
-        s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-        
-        try: 
-            s3.upload_fileobj(photo_file, BUCKET, key)
-            url = f"{S3_BASE_URL}{BUCKET}/{KEY}"
-            photo = Photo(url=url)
-            photo.save()
-        except:
-            print('An error ocurred uploading file to S3')
-    return redirect('')
+def add_photo(request, kind, key):
+    if request.method =='GET':
+        data = {
+            'kind': kind,
+            'key': key
+        }
+        return render(request, 'add_photo.html', data)
+    else:
+        photo_file = request.FILES.get('photo-file', None)
+        if photo_file:
+            s3 = boto3.client('s3')
+            key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+            
+            try: 
+                s3.upload_fileobj(photo_file, BUCKET, key)
+                url = f"{S3_BASE_URL}{BUCKET}/{KEY}"
+                photo = Photo(url=url)
+                if kind=='event': 
+                    evt = Event.objects.get(id=key)
+                    photo.event = evt
+                elif kind == 'posting': 
+                    pst = Posting.objects.get(id=key)
+                    photo.posting = pst
+                elif kind == 'profile': 
+                    prf = Profile.objects.get(id=key)
+                    photo.profile = prf
+                photo.save()
+            except:
+                print('An error ocurred uploading file to S3')
+                ##weronika redirct to the kind
+        return redirect('main')
