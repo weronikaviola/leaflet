@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+import requests
 from django.http import HttpResponse, QueryDict
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -9,6 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
 from main_app import views
 
 
@@ -17,7 +19,8 @@ import boto3
 from .models import Event, Posting, Alert, Profile, Photo
 
 S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
-BUCKET='recordcollector'
+BUCKET='musicschool'
+# BUCKET='recordcollector'
 
 
 def home(request):
@@ -28,7 +31,11 @@ def home(request):
 
 @login_required
 def main(request):
-    return render(request, 'main_app/index.html')
+    
+    w_string = f"http://api.openweathermap.org/data/2.5/weather?zip={request.user.profile.zip_code}&units=imperial&appid=87fab4e9f3b9de2a1b56827d6c806a9f"
+    weather_api = requests.get(w_string).json()
+    temp = weather_api['main']['temp']
+    return render(request, 'main_app/index.html', {'temp': temp})
 
 ##### events #####
 class EventsList(LoginRequiredMixin, ListView):
