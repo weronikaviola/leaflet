@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content%}
-
-<!-- Add event link -->
 <br>
+<div class="row left">
+    <h4>{{user.profile.zip_code }} Posts</h4>
+</div>
 <div class="row">
     {% for posting in posting_list %}
     <div class="col s12 m4">
