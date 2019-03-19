@@ -18,8 +18,8 @@
 </head>
 
 <body>
-    <div class="container header">
-        <nav>
+    <div class="header">
+        <nav class="cyan lighten-3">
             <div class="cyan lighten-3 nav-wrapper l12">
                 {% if user.is_authenticated %}
                     <a href="{% url 'main' %}" class="title brand-logo">leaflet</a>
@@ -29,7 +29,7 @@
                 <a href="#" data-activates="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <!-- login / out or sign up based on auth'd user -->
                 <ul id="nav-mobile" class="right">
-                {% if user.is_authenticated %}
+                 {% if user.is_authenticated %}
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">Log In</a></li>
@@ -39,6 +39,7 @@
 
                 <!-- nav that appears on medium sized screen or larger  -->
                 <ul class="right hide-on-med-and-down">
+                    
                     <li class="tab"><a href="{% url 'main' %}">Main</a></li>
                     <li class="tab"><a href="{% url 'events_index' %}">Events</a></li>
                     <li class="tab"><a href="{% url 'postings_index' %}">Postings</a></li>
@@ -52,6 +53,22 @@
         <!-- hidden side nav -->
         {% if user.is_authenticated %}
         <ul class="sidenav" id="mobile-demo">
+           <div class="col s12 m8 offset-m2 l6 offset-l3">
+                <div class="card-panel grey lighten-5 z-depth-1">
+                    <div class="row">
+                        {% if user.profile.photo %}
+                        <div class="col s3">
+                            <img src="{{ user.profile.photo.url }}" alt="" class="circle profile-img responsive-img"> <!-- notice the "circle" class -->
+                        </div>
+                        {% endif %}
+                        <div class="col s7">
+                            <span class="black-text">
+                                {{ user.firstname }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <li class="tab"><a href="{% url 'main' %}">Main</a></li>
             <li class="tab"><a href="{% url 'events_index' %}">Events</a></li>
             <li class="tab"><a href="{% url 'postings_index' %}">Postings</a></li>
