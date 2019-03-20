@@ -19,10 +19,13 @@
     </div>
 
     {% if user.id == object.author.id %}
+
     <div>
         <a class="btn waves-effect waves-light" href="{% url 'postings_update' object.id %}">Edit</a>
         <a class="btn waves-effect waves-light red" href="{% url 'postings_delete' object.id %}">Delete</a>
     </div>
+
     {% endif %}
+
 </div>
 {% endblock %}

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content%}
+
 <div class="container">
     <a href="/alerts/">Back to Alerts</a>
     <h3>{{ object.title}}</h3>
@@ -24,6 +25,7 @@
     </table>
     <p>{{ object.description}}</p>
     {% if user.id == object.admin.id %}
+
     <div>
         <a class="btn waves-effect waves-light" href="{% url 'alerts_update' object.id %}">Edit</a>
         <a class="btn waves-effect waves-light red" href="{% url 'alerts_delete' object.id %}">Delete</a>
