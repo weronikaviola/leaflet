@@ -4,8 +4,14 @@
 <div class="container">
     <div class="row">
         <div class="col s12 m6 l7">
+            {% if user.profile %}
             <h3>Welcome, {{ user.profile.nickname }}!</h3>
+            {% else %}
+            <h3>Welcome, {{ user.first_name }}</h3>
+            {% endif %}
+            {% if user.profile%}
             <h5>What's new in the {{ user.profile.zip_code }}?</h5>
+            {% endif %}
         </div>
         <div class="col s12 m6 l5">
             {% if user.profile %}
@@ -13,7 +19,9 @@
                 <a href="https://www.maps.ie/map-my-route/">Map a route</a>
             </iframe>
             {% endif %}
+            {% if user.profile %}
             <h7 class="right">It is currently {{temp}}°F</h7>
+            {% endif %}
         </div>
     </div>
 </div>
