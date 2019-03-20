@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content%}
-
 <br>
 <div class="row left">
     <h4>Alerts</h4>
@@ -16,16 +15,13 @@
                 <p>{{ alert.description }}</p>
             </div>
  
-
             <div class="card-action">
                 <a href="{% url 'alerts_details' alert.id %}">Details</a>
                 {% if user == alert.author %}
                 <a href="{% url 'alerts_update' alert.id %}">Edit</a>
                 <a href="{% url 'alerts_delete' alert.id %}">Delete</a>
                 {% endif %}
-
-            </div> 
-
+            </div>
         </div>
     </div>
     {% endfor %}

@@ -24,7 +24,6 @@ class Posting(models.Model):
     def get_absolute_url(self):
         return reverse('add_photo', kwargs={'kind': 'postings', 'obj_id': self.id})
 
-
 class Alert(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=800)
