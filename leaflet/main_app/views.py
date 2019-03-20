@@ -10,9 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-
 from main_app import views
-
 
 import uuid
 import boto3
@@ -103,6 +101,7 @@ class AlertUpdate(LoginRequiredMixin, UpdateView):
 class AlertDelete(LoginRequiredMixin, DeleteView):
     model = Alert
     success_url = '/alerts/'
+
 ###################### accounts ##################
 class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
