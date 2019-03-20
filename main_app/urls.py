@@ -1,5 +1,6 @@
 from django.urls import path, include
-from django.conf.urls import url
+
+
 
 from . import views
 
@@ -23,6 +24,7 @@ urlpatterns = [
     path('alerts/<int:pk>/delete/', views.AlertDelete.as_view(), name='alerts_delete'),
     path('settings/<int:pk>/', views.ProfileUpdate.as_view(), name='account_settings'),
     path('profile/create/', views.ProfileCreate.as_view(), name='profile_create'),
+    path('profile/<int:user_id>', views.ProfileDetail.as_view(), name='profile_view'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', views.signup, name='signup'),
     path('photo/<slug:kind>/<int:obj_id>', views.add_photo, name='add_photo'),

@@ -24,6 +24,7 @@ class Posting(models.Model):
     def get_absolute_url(self):
         return reverse('add_photo', kwargs={'kind': 'postings', 'obj_id': self.id})
 
+
 class Alert(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=800)
@@ -48,5 +49,3 @@ class Photo(models.Model):
     profile = models.OneToOneField(Profile, blank=True, null=True, on_delete=models.CASCADE)
     def __str__(self):
         return f"Photo url {self.url}"
-    # def get_absolute_url(self):
-    #     return reverse('main')
