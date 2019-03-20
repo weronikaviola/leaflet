@@ -19,9 +19,10 @@ import boto3
 from .models import Event, Posting, Alert, Profile, Photo
 
 S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
-# BUCKET='leaflet2'
-BUCKET = 'musicschool'
+BUCKET= 'leaflet1'
+# BUCKET = 'musicschool'
 # BUCKET='recordcollector'
+
 
 
 def home(request):
