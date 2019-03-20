@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .models import Event
-from .models import Profile, Photo
+from .models import Profile, Photo, Event
 
 
 admin.site.register(Profile)

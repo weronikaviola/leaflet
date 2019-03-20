@@ -49,5 +49,3 @@ class Photo(models.Model):
     profile = models.OneToOneField(Profile, blank=True, null=True, on_delete=models.CASCADE)
     def __str__(self):
         return f"Photo url {self.url}"
-    # def get_absolute_url(self):
-    #     return reverse('main')

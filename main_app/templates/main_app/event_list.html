@@ -15,9 +15,9 @@
                 {% else %}
                     <img src="https://lorempixel.com/100/190/nature/6">
                 {% endif %}
+                <span class="card-title truncate">{{ event.name}}</span>
                 </div>
                 <div class="card-content truncate">
-                    <span class="card-title truncate">{{ event.name}}</span>
                     <p>Date: {{ event.date }}</p>
                     <p>Location: {{ event.location }}</p>
                     <p>By: {{ event.admin.username}}</p>
