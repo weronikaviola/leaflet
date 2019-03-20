@@ -24,6 +24,7 @@ S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
 
 BUCKET = 'leaflet1'
 
+
 def home(request):
     if (request.user.id == None):
         return render(request, 'main_app/landing.html')
@@ -46,7 +47,6 @@ class EventsList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         m_zip = self.request.user.profile.zip_code
         return Event.objects.filter(admin__profile__zip_code=m_zip)
-
 class EventDetail(LoginRequiredMixin, DetailView):
     model = Event
 
@@ -114,6 +114,7 @@ class AlertDelete(LoginRequiredMixin, DeleteView):
     model = Alert
     success_url = '/alerts/'
 ###################### accounts ##################
+
 class ProfileDetail(LoginRequiredMixin, DetailView):
     model = Profile
 
@@ -138,6 +139,7 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
 #         return ProfileUpdate.as_view()(request, pk=profile.id)
 #     except ObjectDoesNotExist:
 #         return ProfileCreate.as_view()(request, pk=profile.id)
+
 
 def signup(request):
     error_message = ''
