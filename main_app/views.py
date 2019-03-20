@@ -21,9 +21,9 @@ import boto3
 from .models import Event, Posting, Alert, Profile, Photo
 
 S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
-# BUCKET='leaflet2'
-BUCKET = 'musicschool'
-# BUCKET='recordcollector'g
+
+BUCKET = 'leaflet1'
+
 def home(request):
     if (request.user.id == None):
         return render(request, 'main_app/landing.html')
@@ -129,7 +129,7 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Profile
     fields = ['nickname', 'zip_code']
-    success_url = 'profile_view'
+    success_url = '/main'
 
 # @login_required
 # def account_settings(request, user_id):
