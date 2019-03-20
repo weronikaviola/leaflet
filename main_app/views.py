@@ -23,7 +23,7 @@ from .models import Event, Posting, Alert, Profile, Photo
 S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
 # BUCKET='leaflet2'
 BUCKET = 'musicschool'
-# BUCKET='recordcollector'
+# BUCKET='recordcollector'g
 def home(request):
     if (request.user.id == None):
         return render(request, 'main_app/landing.html')
@@ -123,7 +123,7 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-    success_url = 'main'
+    success_url = '/main'
     
 
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
