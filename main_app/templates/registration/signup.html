@@ -2,7 +2,9 @@
 {% block content %}
 
 <div class="container">
-    <h1>Sign Up</h1>
+
+    <h3>Sign Up</h3>
+    {{ error_message }}
 
     <form action="{% url 'signup' %}" method="post">
         {% csrf_token %}

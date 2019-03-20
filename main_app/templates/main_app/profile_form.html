@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
+
+    <h3>Profile Info</h3>
+    {% if user.profile.photo %}
+    <img src="{{user.profile.photo.url}}">
+    {% endif %}
+    {% if user.profile %}
+    <br>
+    <a href="{% url 'add_photo' 'profile' user.profile.id %}" class="btn waves-effect waves-light">add photo</a>
+    {% endif %}
+
     <form action="" method="post">
         {% csrf_token %}
         <table>

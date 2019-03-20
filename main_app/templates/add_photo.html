@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="container">
+    <h3>Add Photo</h3>
+    <form action="{% url 'add_photo' kind obj_id %}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+    <input class="waves-effect waves-light btn" type="file" name="photo-file">
+    <input class="waves-effect waves-light btn" type="submit">
+    <br><br>
+    <a class="waves-effect grey waves-light btn" href="{{skip_url}}">Skip</a>
+    </form>  
+</div>
+
+{% endblock %}

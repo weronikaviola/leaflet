@@ -1,26 +1,31 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<!-- Add event link -->
-<!-- <a href="{% url 'alerts_create' %}">Add new alert</a> -->
-
+<br>
+<div class="row left">
+    <h4>Alerts</h4>
+</div>
 <div class="row">
     {% for alert in alert_list %}
-    <div class="col s12 m6">
-        <div class="card hoverable">
+    <div class="col s6 m4 l3">
+        <div class="card small horizontal sticky-action hoverable">
             <div class="card-content">
-                <span class="truncate alert card-title">{{ alert.title }}</span>
+                <span class="activator truncate alert card-title">{{ alert.title }}</span>
                 <p>{{ alert.date }}</p>
-                <p><!-- put author here--></p>
-                <p class="truncate">{{ alert.description }}</p>
+                <p>Posted by: {{ alert.author }}</p>
+                <p>{{ alert.description }}</p>
             </div>
+ 
+
             <div class="card-action">
                 <a href="{% url 'alerts_details' alert.id %}">Details</a>
                 {% if user == alert.author %}
                 <a href="{% url 'alerts_update' alert.id %}">Edit</a>
                 <a href="{% url 'alerts_delete' alert.id %}">Delete</a>
                 {% endif %}
+
             </div> 
+
         </div>
     </div>
     {% endfor %}

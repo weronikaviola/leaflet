@@ -4,13 +4,6 @@ from datetime import date
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-class Photo(models.Model):
-    # add ForKey
-    url = models.CharField(max_length=200)
-
-    def __str__(self):
-        return f"Photo url {self.url}"
-
 
 class Event(models.Model):
     name = models.CharField(max_length=100)
@@ -19,9 +12,9 @@ class Event(models.Model):
     admin = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=200)
     def __str__(self):
-        return f'{self.name} by {self.admin.name}'
+        return f'{self.name}'
     def get_absolute_url(self):
-        return reverse('events_details', kwargs={'pk': self.id})
+        return reverse('add_photo', kwargs={'kind': 'events', 'obj_id': self.id})
 
 class Posting(models.Model):
     title = models.CharField(max_length=100)
@@ -29,7 +22,8 @@ class Posting(models.Model):
     date = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     def get_absolute_url(self):
-        return reverse('postings_details', kwargs={'pk': self.id})
+        return reverse('add_photo', kwargs={'kind': 'postings', 'obj_id': self.id})
+
 
 class Alert(models.Model):
     title = models.CharField(max_length=100)
@@ -42,10 +36,18 @@ class Alert(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=100)
-    profile_pic = models.CharField(max_length=200, default = 'https://i.imgur.com/1WGonoD.png')
+    zip_code = models.IntegerField(default=00000)
     def __str__(self):
-        return f'profile: {self.user.name}'
+        return f'profile: {self.user.first_name}'
     def get_absolute_url(self):
-        return reverse('account_settings', kwargs={'pk': self.id})
+        return reverse('add_photo', kwargs={'kind': 'profile', 'obj_id': self.id})
 
-
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    event = models.OneToOneField(Event, blank=True, null=True, on_delete=models.CASCADE)
+    posting = models.OneToOneField(Posting, blank=True, null=True, on_delete=models.CASCADE)
+    profile = models.OneToOneField(Profile, blank=True, null=True, on_delete=models.CASCADE)
+    def __str__(self):
+        return f"Photo url {self.url}"
+    # def get_absolute_url(self):
+    #     return reverse('main')

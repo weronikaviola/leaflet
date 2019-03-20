@@ -2,19 +2,28 @@
 
 {% block content%}
 
-<div class="row">
-    <div class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
-    <!-- Teal page content
-        This content will be:
-        9-columns-wide on large screens,
-        8-columns-wide on medium screens,
-        12-columns-wide on small screens  -->
-
-    </div>
-    <div class="col s12 m8 l9" style="width: 100%">
-        <iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%2090401&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-            <a href="https://www.maps.ie/map-my-route/">Map a route</a>
-        </iframe>
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6 l7">
+            {% if user.profile %}
+            <h3>Welcome, {{ user.profile.nickname }}!</h3>
+            {% else %}
+            <h3>Welcome, {{ user.first_name }}</h3>
+            {% endif %}
+            {% if user.profile%}
+            <h5>What's new in the {{ user.profile.zip_code }}?</h5>
+            {% endif %}
+        </div>
+        <div class="col s12 m6 l5">
+            {% if user.profile %}
+            <iframe width="100%" height="300px" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%20{{user.profile.zip_code}}&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                <a href="https://www.maps.ie/map-my-route/">Map a route</a>
+            </iframe>
+            {% endif %}
+            {% if user.profile %}
+            <h7 class="right">It is currently {{temp}}°F</h7>
+            {% endif %}
+        </div>
     </div>
 </div>
 {%endblock%}
