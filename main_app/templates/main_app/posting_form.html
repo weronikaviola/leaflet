@@ -3,11 +3,9 @@
 {% if object %}
 
 <div class="container">
-
     <h3>Edit {{ object.name }}</h3>
     {% else %}
     <h3>Add Posting</h3>
-
     {% endif %}
     <form action="" method="post">
         {% csrf_token %}

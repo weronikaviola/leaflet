@@ -11,11 +11,13 @@ body {
     width: 100vw;
     margin: 0;
 }
+nav {
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
-
-.title {
+.brand-logo {
     font-family: 'Lobster', cursive;  
-    padding: 100px;
 }
 
 .page-footer {
@@ -23,6 +25,7 @@ body {
     text-align: right;
     width: 100%;
     margin: 0;
+    height: 100px;
 } 
 
 .alert {
