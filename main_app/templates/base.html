@@ -18,7 +18,7 @@
 </head>
 ​
 <body>
-  <div class="header">
+  <div class="cyan header">
     <nav class="cyan lighten-3">
       <div class="cyan lighten-3 nav-wrapper l12">
         {% if user.is_authenticated %}
@@ -53,18 +53,18 @@
     {% if user.is_authenticated %}
     <ul class="sidenav" id="mobile-demo">
       <div class="col s12 m8 offset-m2 l6 offset-l3">
-        <div class="card-panel grey lighten-5 z-depth-1">
+        <div class="cardpanel small grey lighten-5 z-depth-1">
           <div class="row">
-            {% if user.profile.photo %}
             <div class="col s3">
+            {% if user.profile and user.profile.photo %}
               <img src="{{ user.profile.photo.url }}" alt="" class="circle profile-img responsive-img"> <!-- notice the "circle" class -->
             </div>
-            {% endif %}
             <div class="col s7">
               <p class="black-text">
                 <a href="{% url 'account_settings' user.profile.id %}">
-                {{ user.username }}
+                  {{ user.username }}
                 </a>
+                {% endif %}
               </p>
             </div>
           </div>
@@ -81,14 +81,18 @@
     {% endif %}
   </div>   
 ​
+  <main>
   {% block content %}
   {% endblock %}
-​
-  <footer class="cyan darken-3 page-footer right baseline">
-    All Rights Reserved, &copy; 2019 MGR International &nbsp;
+​  </main>
+  <footer class="cyan darken-3 page-footer">
+    <div class="cyan darken-3 footer-copyright">
+      <div class="container right">
+        All Rights Reserved, &copy; 2019 MGR International &nbsp;
+      ​</div>
+      </div>
   </footer>
-​
-  <script>
+<script>
   $(".sidenav-trigger").sideNav();
   </script>
 </body>  

@@ -10,12 +10,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-<<<<<<< HEAD:leaflet/main_app/views.py
-=======
 import os
 
 
->>>>>>> aa269a108e717524eefac66db083e8a794833b95:main_app/views.py
 from main_app import views
 
 import uuid

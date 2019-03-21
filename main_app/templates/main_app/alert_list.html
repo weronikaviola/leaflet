@@ -1,34 +1,25 @@
 {% extends 'base.html' %}
 {% block content%}
-
 <br>
-<div class="row left">
+<div class="row">
     <h4>Alerts</h4>
 </div>
 <div class="row">
     {% for alert in alert_list %}
-<<<<<<< HEAD:leaflet/main_app/templates/main_app/alert_list.html
-    <div class="col s6 m4 l3">
-        <div class="card small horizontal hoverable">
-=======
-    <div class="col s6 m4 l6">
-        <div class="card small horizontal sticky-action hoverable">
->>>>>>> aa269a108e717524eefac66db083e8a794833b95:main_app/templates/main_app/alert_list.html
+    <div class="col s12 m6 l4">
+        <div class="card small  sticky-action hoverable">
             <div class="card-content">
                 <span class="activator truncate alert card-title">{{ alert.title }}</span>
                 <p>{{ alert.date }}</p>
                 <p>Posted by: {{ alert.author }}</p>
                 <p>{{ alert.description }}</p>
             </div>
- 
-
             <div class="card-action">
                 <a href="{% url 'alerts_details' alert.id %}">Details</a>
                 {% if user == alert.author %}
                 <a href="{% url 'alerts_update' alert.id %}">Edit</a>
                 <a href="{% url 'alerts_delete' alert.id %}">Delete</a>
                 {% endif %}
-
             </div> 
 
         </div>

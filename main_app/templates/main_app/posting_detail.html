@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block content%}
-<div class="container left-align">
-    <a href="/postings/">Back to Postings List</a>
-</div>
+<br>
 <div class="container left-align">
     <div class="row">
         <h3>{{ object.title}}</h3>
@@ -17,7 +15,6 @@
             <p>{{ object.description}}</p>
         </div>
     </div>
-
     {% if user.id == object.author.id %}
 
     <div>
@@ -26,6 +23,10 @@
     </div>
 
     {% endif %}
+    <hr>
+    <div class="container">
+            <a href="/postings/">Back to Postings List</a>
+        </div>
 
 </div>
 {% endblock %}

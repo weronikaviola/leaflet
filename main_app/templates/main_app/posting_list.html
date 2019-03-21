@@ -2,24 +2,22 @@
 {% block content%}
 
 <br>
-<div class="row left">
+<div class="row">
     <h4>{{user.profile.zip_code }} Posts</h4>
 </div>
+<div class="fixed-action-btn">
+        <a href="{% url 'postings_create' %}" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
+    </div>
 
 <div class="row">
     {% for posting in posting_list %}
-    <div class="col s12 m4">
+    <div class="col s12 m6 l6">
         <div class="card small hoverable">
             <div class="card-image">
-<<<<<<< HEAD:leaflet/main_app/templates/main_app/posting_list.html
-                
-=======
-
->>>>>>> aa269a108e717524eefac66db083e8a794833b95:main_app/templates/main_app/posting_list.html
                 {% if posting.photo %}
                 <img src="{{ posting.photo.url }}">
-                {% else %}
-                <img src="https://lorempixel.com/100/190/nature/6">
+                <!-- {% else %}
+                <img src="https://lorempixel.com/100/190/nature/6"> -->
                 {% endif %}
                 <span class="card-title">{{ posting.title }}</span>
             </div>
@@ -39,13 +37,11 @@
         </div>  
     </div>  
     {% endfor %}  
+
 </div>  
 
-<div class="fixed-action-btn">
-    <a href="{% url 'postings_create' %}" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
-</div>
 
-<script>
+<script type="text/javascript">
   $(document).ready(function(){
     $('.fixed-action-btn').floatingActionButton();
   });

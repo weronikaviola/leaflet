@@ -2,8 +2,8 @@
 {% block content%}
 
 <div class="container">
+    <br>
     {% if object %}
-
     <h3>Edit {{ object.name }}</h3>
     {% else %}
     <h3>Add Event</h3>
@@ -14,7 +14,8 @@
             {{ form.as_table }}
         </table>
         <input class="btn waves-effect waves-light" type="submit" value="Add!">
-    </form>
+        <br>
+      </form>
 </div>
 
 <script>
