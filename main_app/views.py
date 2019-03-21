@@ -34,10 +34,11 @@ def home(request):
 def main(request):
     try:
         profile = request.user.profile
-        w_string = f"http://api.openweathermap.org/data/2.5/weather?zip={request.user.profile.zip_code}&units=imperial&appid=87fab4e9f3b9de2a1b56827d6c806a9f"
+        w_string = f"http://api.openweathermap.org/data/2.5/weather?zip={request.user.profile.zip_code}&units=imperial&appid={os.environ['WEATHER_API_KEY']}"
         weather_api = requests.get(w_string).json()
         temp = weather_api['main']['temp']
-        return render(request, 'main_app/index.html', {'temp': temp})
+        icon = weather_api['weather'][0]['icon']
+        return render(request, 'main_app/index.html', {'temp': temp, 'weather': icon})
     except:
         return redirect('profile_create')
 

@@ -120,9 +120,9 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 LOGIN_REDIRECT_URL = '/main/'
 
 LOGOUT_REDIRECT_URL = '/'
@@ -130,3 +130,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 import django_heroku
 django_heroku.settings(locals())
+
+
+import environ
+environ.Env()
+environ.Env.read_env()

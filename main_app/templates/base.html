@@ -1,5 +1,6 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -61,8 +62,10 @@
             </div>
             <div class="col s7">
               <p class="black-text">
+                {% if user.profile %}
                 <a href="{% url 'account_settings' user.profile.id %}">
-                  {{ user.username }}
+                  {% endif %}
+                {{ user.username }}
                 </a>
                 {% endif %}
               </p>
