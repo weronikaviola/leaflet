@@ -80,3 +80,7 @@ textarea {
 .post-image:hover {
    background: none;
 }
+#weather-icon {
+    -webkit-filter: grayscale(50%); 
+    filter: grayscale(50%);
+}
