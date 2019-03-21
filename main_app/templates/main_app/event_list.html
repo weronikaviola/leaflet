@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content%}
 <br>
+
 <div class="row left">
     <h4>{{user.profile.zip_code }} Events</h4>
 </div>
@@ -14,9 +15,9 @@
                 {% else %}
                     <img src="https://lorempixel.com/100/190/nature/6">
                 {% endif %}
+                <span class="card-title truncate">{{ event.name}}</span>
                 </div>
                 <div class="card-content truncate">
-                    <span class="card-title truncate">{{ event.name}}</span>
                     <p>Date: {{ event.date }}</p>
                     <p>Location: {{ event.location }}</p>
                     <p>By: {{ event.admin.username}}</p>
@@ -33,6 +34,7 @@
         </div>
         {% endfor %}
     </div>
+
 </div>
 <div class="fixed-action-btn">
     <a href="{% url 'events_create' %}" class="btn-floating btn-large waves-effect waves-light cyan yellow darken-3"><i class="material-icons">event</i></a>
