@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<div class="container">
+    <div class="row">
+        <br>
+        <h3>Welcome, {{ user.profile.nickname }}!</h3>
+        <h5>What's new in the {{ user.profile.zip_code }}?</h5>
+        <div class="col s12 m6 l7">
+            <ul id="tabs-swipe-demo" class="tabs">
+                <li class="tab col s3"><a class="active" href="#test-swipe-1" href="#test-swipe-1">Postings</a></li>
+                <li class="tab col s3"><a href="#test-swipe-2">Alerts</a></li>
+                <li class="tab col s3"><a href="#test-swipe-3">Events</a></li>
+            </ul>
+                <div id="test-swipe-1" class="col s12 blue">Test 1</div>
+                <div id="test-swipe-2" class="col s12 red">Test 2</div>
+                <div id="test-swipe-3" class="col s12 green">Test 3</div>
+        </div>
+        <div class="col s12 m6 l5">
+            {% if user.profile %}
+            <iframe width="100%" height="300px" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%20{{user.profile.zip_code}}&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                <a href="https://www.maps.ie/map-my-route/">Map a route</a>
+            </iframe>
+            {% endif %}
+            <h5 class="right">It is currently {{temp}}°F</h5>
+        </div>
+    </div>
+</div>
+<script>
+$(document).on('ready', function(){
+    $('.tabs').tabs({
+      swipeable : true,
+      responsiveThreshold: Infinity
+    });
+  });
+</script>
+{%endblock%}

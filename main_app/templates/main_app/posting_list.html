@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<br>
+<div class="row">
+    <h4>{{user.profile.zip_code }} Posts</h4>
+</div>
+<div class="fixed-action-btn">
+        <a href="{% url 'postings_create' %}" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
+    </div>
+
+<div class="row">
+    {% for posting in posting_list %}
+    <div class="col s12 m6 l6">
+        <div class="card small hoverable">
+            <div class="card-image">
+                {% if posting.photo %}
+                <img src="{{ posting.photo.url }}">
+                <!-- {% else %}
+                <img src="https://lorempixel.com/100/190/nature/6"> -->
+                {% endif %}
+                <span class="card-title">{{ posting.title }}</span>
+            </div>
+            <div class="card-content">
+                <p>{{ posting.date }}</p>
+                <p>Posted by {{ posting.author }}</p>
+
+                <p> {{ posting.description }}</p>
+            </div>
+            <div class="card-action">
+                <a href="{% url 'postings_details' posting.id %}">Info</a>
+                {% if user.id == posting.author.id %}
+                <a href="{% url 'postings_update' posting.id %}">Edit</a>
+                <a href="{% url 'postings_delete' posting.id %}">Delete</a>
+                {% endif %}
+            </div>
+        </div>  
+    </div>  
+    {% endfor %}  
+
+</div>  
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.fixed-action-btn').floatingActionButton();
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="container">
+    <h3>Delete Alert</h3>
+    <h5>Are you sure you want to delete <span class="alert">{{ object.title }}</span>?</h5>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <a class="btn waves-effect" href="{% url 'alerts_details' object.id %}">Cancel</a>
+        <input class="btn waves-effect red waves-light"type="submit" value="Yes - Delete">
+    </form>
+</div>
+{% endblock %}

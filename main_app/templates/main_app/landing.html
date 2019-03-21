@@ -1,0 +1,30 @@
+{% extends 'landing-base.html' %}
+{% block content %}
+
+<div class="container">
+<div class="row">
+    <div class="row s12 m10 center">
+        <h3 class="title">leaflet</h3>
+        <br>
+        <img src="static/images/treehouse.png">
+    </div>
+    <div class="row s12 m10 center">
+        The new way to connect with your neighbors.<br>
+        Share alerts, posts, and events relative to your community.
+        <!-- <div class="col s12 m5">
+            About
+        </div>
+        <div class="col s12 m5">
+            More
+        </div> -->
+    </div>
+    <div class="row s12 m10 center">
+        <a class="waves-effect waves-light btn-large" href="{% url 'login' %}">Log In</a></li>
+        <a class="waves-effect waves-light btn-large" href="{% url 'signup' %}">Sign Up</a></li>
+    </div>
+</div>
+
+</div>
+
+
+{% endblock %}

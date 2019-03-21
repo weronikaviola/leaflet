@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<div class="container">
+    <a href="/alerts/">Back to Alerts</a>
+    <h3>{{ object.title}}</h3>
+    {% if alert.photo %}
+    <img class="posting-img" src="{{ object.photo.url }}">
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Posted By</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ object.date }}</td>
+                <td>{{ object.admin.username}}</td>
+                <td>{{ object.location }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>{{ object.description}}</p>
+    {% if user.id == object.admin.id %}
+
+    <div>
+        <a class="btn waves-effect waves-light" href="{% url 'alerts_update' object.id %}">Edit</a>
+        <a class="btn waves-effect waves-light red" href="{% url 'alerts_delete' object.id %}">Delete</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

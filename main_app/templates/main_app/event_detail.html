@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content%}
+<!-- <div class="row s12 m12 l12 left">
+    <a href="#!" class="breadcrumb clean">First</a>
+    <a href="#!" class="breadcrumb clean">Second</a>
+    <a href="#!" class="breadcrumb clean">Third</a>
+</div> -->
+<div class="container">
+    <a href="{% url 'events_index' %}">Back</a>
+</div>
+<div class="container">
+
+    <h3>{{ object.name}}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Posted By</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+            <td>{{ object.date }}</td>
+            <td>{{ object.admin.username}}</td>
+            <td>{{ object.location }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>About</strong></p>
+    <p> {{ object.description}}</p>
+
+    <div>
+        <a href="{% url 'events_update' object.id %}">Edit</a>
+        <a href="{% url 'events_delete' object.id %}">Delete</a>
+    </div>
+</div>
+{% endblock %}
