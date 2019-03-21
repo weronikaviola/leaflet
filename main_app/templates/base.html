@@ -27,7 +27,7 @@
         {% else %}
           <a href="{% url 'login' %}" class="title brand-logo">leaflet</a>
         {% endif %}
-        <a href="#" data-activates="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="" data-activates="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <!-- login / out or sign up based on auth'd user -->
         <ul id="nav-mobile" class="right">
          {% if user.is_authenticated %}
@@ -62,9 +62,7 @@
             </div>
             <div class="col s7">
               <p class="black-text">
-                {% if user.profile %}
                 <a href="{% url 'account_settings' user.profile.id %}">
-                  {% endif %}
                 {{ user.username }}
                 </a>
                 {% endif %}
