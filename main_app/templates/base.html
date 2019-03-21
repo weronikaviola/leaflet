@@ -63,7 +63,9 @@
             {% endif %}
             <div class="col s7">
               <p class="black-text">
+                {% if user.profile %}
                 <a href="{% url 'account_settings' user.profile.id %}">
+                  {% endif %}
                 {{ user.username }}
                 </a>
               </p>
