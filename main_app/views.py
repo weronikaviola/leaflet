@@ -24,6 +24,7 @@ S3_BASE_URL='https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'leaflet1'
 
 
+
 def home(request):
     if (request.user.id == None):
         return render(request, 'main_app/landing.html')
