@@ -1,5 +1,5 @@
 # Leaflet 
-![alt text](https://i.imgur.com/poEeV4d.png)
+![app main view](https://i.imgur.com/poEeV4d.png)
 
 
 
@@ -11,13 +11,15 @@ Today's society is interacting more on the their electronic devices than with th
 
 
 ## Action 
-MRG International has the solution for this problem. I introduce to you Leaflet. Leaflet is the website that allows you to interact with the people in your neighborhood. You can post alerts,Events, and Postings so your neighbors can be notify with the latest news from their neighborhood.
+MRG International has the solution for this problem. We introduce to you Leaflet. Leaflet is the website that allows you to interact with the people in your neighborhood. You can post alerts,Events, and Postings so your neighbors can be updated with the latest news from their neighborhood.
 
 
 
-![alt text](https://i.imgur.com/l5gId7E.png)
+![app_view](https://i.imgur.com/l5gId7E.png)
 
+## Meet the Team
 
+![team photo](https://imgur.com/quGGV0r)
 
 
 
