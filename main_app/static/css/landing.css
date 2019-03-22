@@ -24,3 +24,7 @@ h1 {
 footer {
     width: 100vw;
 }
+
+.brand-logo {
+    font-family: 'Lobster', cursive;  
+}

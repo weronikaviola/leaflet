@@ -3,30 +3,28 @@
 <br>
 <div class="container left-align">
     <div class="row">
-        <h3>{{ object.title}}</h3>
+        <h3>{{ posting.title}}</h3>
         <div class="col s12 m8 l9">
             {% if posting.photo %}
             <img class="posting-photo" src="{{ posting.photo.url }}">
             {% endif %}
         </div>
         <div class="col s12 m4 l3">
-            <p>Date posted: {{ object.date }}</p>
-            <p>Posted by: {{ object.author.username}}</p>
-            <p>{{ object.description}}</p>
+            <p>Date posted: {{ posting.date }}</p>
+            <p>Posted by: {{ posting.author.username}}</p>
+            <p>{{ posting.description}}</p>
         </div>
     </div>
-    {% if user.id == object.author.id %}
-
+    {% if user.id == posting.author.id %}
     <div>
         <a class="btn waves-effect waves-light" href="{% url 'postings_update' object.id %}">Edit</a>
         <a class="btn waves-effect waves-light red" href="{% url 'postings_delete' object.id %}">Delete</a>
     </div>
-
     {% endif %}
     <hr>
     <div class="container">
-            <a href="/postings/">Back to Postings List</a>
-        </div>
+        <a href="/postings/">Back to Postings List</a>
+    </div>
 
 </div>
 {% endblock %}
