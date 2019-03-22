@@ -1,5 +1,5 @@
 # Leaflet 
-![alt text] (/static/images/main.png)
+![alt text](https://i.imgur.com/poEeV4d.png)
 
 
 
@@ -15,7 +15,7 @@ MRG International has the solution for this problem. I introduce to you Leaflet.
 
 
 
-![alt text] (/static/images/events.png)
+![alt text](https://i.imgur.com/l5gId7E.png)
 
 
 
@@ -41,4 +41,4 @@ MRG International has the solution for this problem. I introduce to you Leaflet.
 
 ## Link to our website 
 
-mgr-leaflet.herokuapp.com
+[check it out!](https://mgr-leaflet.herokuapp.com)
