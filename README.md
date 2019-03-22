@@ -19,7 +19,7 @@ MRG International has the solution for this problem. We introduce to you Leaflet
 
 ## Meet the Team
 
-![team photo](https://imgur.com/quGGV0r)
+![team photo](https://imgur.com/quGGV0r.png)
 
 
 
