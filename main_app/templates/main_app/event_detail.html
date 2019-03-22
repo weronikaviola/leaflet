@@ -30,10 +30,11 @@
     </table>
     <p><strong>About</strong></p>
     <p> {{ object.description}}</p>
-
+    {% if user.id == object.admin.id%}
     <div>
         <a href="{% url 'events_update' object.id %}">Edit</a>
         <a href="{% url 'events_delete' object.id %}">Delete</a>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
